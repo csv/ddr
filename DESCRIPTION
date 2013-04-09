@@ -1,0 +1,29 @@
+Package: ddr
+Maintainer: Brian Abelson <brianabelson@gmail.com>
+Author: Brian Abelson <brianabelson@gmail.com>
+Version: 1.0
+License: MIT
+LazyData: yes
+LazyLoad: yes
+ZipData: yes
+Title: ddr
+Description: data-driven rhythms in R
+Depends:
+    R (>= 2.15.2),
+    tuneR,
+    plyr
+Collate:
+    'bpm_time.R'
+    'chop.R'
+    'loop.R'
+    'major_scale.R'
+    'minor_scale.R'
+    'combine.R'
+    'ddr_init.R'
+    'sequence.R'
+    'wav_to_instrument.R'
+    'chord.R'
+    'pitch.R'
+    'reverse.R'
+    'select_scale.R'
+    'arpeggidata.R'
