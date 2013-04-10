@@ -1,12 +1,10 @@
-```
-     _     _
+```  _     _
   __| | __| |_ __
  / _` |/ _` | '__|
 | (_| | (_| | |
  \__,_|\__,_|_|
 
  data-driven rhythms in R
-
 ```
 
 ## Installation
@@ -127,7 +125,6 @@ seqs <- list(A, E, B, C.m, H, T, O, K, S)
 
 callmemaybe <- sequence(wavs, seqs, bpm=59.5, count=1/16)
 play(loop(callmemaybe, 4))
-
 ```
 But wait, there's more! `ddr` can also generate sequences that include amplitude changes. Here, any number between 0 and 1 simply corresponds with the relative amplitude of the wave:
 ```
@@ -136,7 +133,6 @@ seqs <- list(c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8))
 
 hihats <- sequence(wavs, seqs, bpm=59.5, count=1/16)
 play(loop(hihats, 4))
-
 ```
 BUT NOW IM REALLY GOING TO BLOW YOUR MIND. Since sequences are (mostly) binomial distributions, you can use built-in R functions to generate random music!
 ```
