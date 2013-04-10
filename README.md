@@ -10,6 +10,7 @@
 ```
 
 ## Installation
+`ddr` has built-in instruments that are BIG. This will take awhile...
 ```
 library("devtools")
 install_github("ddr", "csv")
