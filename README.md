@@ -5,23 +5,64 @@
 | (_| | (_| | |
  \__,_|\__,_|_|
 
+ data-driven rhythms in R
+
 ```
-data-driven rhythms in R
 
 ## Installation
 ```
 library("devtools")
 install_github("ddr", "csv")
 library("ddr")
-ddr_init()
 ```
 
-### Basics
-Instruments and notes:
+## Getting started
+The way `ddr` makes noises is by creating temporary wave files and playing them through an audio player of your preference.  You can set your desired audio player as follows:
+```
+ddr_init(player="path_to_player")
+```
+By default, `ddr` is set to look for `QuickTime` on Mac OSX, eg:
+```
+ddr_init(player="/Applications/'QuickTime Player.app'/Contents/MacOS/'QuickTime Player'")
+```
+However, you might want to use `mplayer`, eg:
+```
+ddr_init(player="/usr/bin/env mplayer'")
+```
+One weird thing about using `QuickTime` is that, when it plays a temporary file, it will freeze the R console until you press `esc`. So, if you see this:
+```
+> play(piano$C3)
+
+```
+just press `esc` and `ddr` will move on to the next task.
+
+
+## Built-in sounds
+
+`ddr` comes with 5 instruments and 2 drum kits:
+
+```
+# Instruments:
+blip -- a sinewave with a quick attack
+piano -- a classic-sounding grand piano
+rhodes -- a fender rhodes
+sinewave -- a simple sinewave
+sweeplow -- a cheesy synth
+
+# Drums:
+moog -- moog drum hits
+roland -- a roland 707
+```
+Instruments and drum kits are simply R lists with each element being a separate wave file. For instance, you can select middle C on a piano as follows:
 ```
 piano$C3
+# or, alternatively:
 piano[["C3"]]
 ```
+If you want to see the names of the wave file in a given instrument, just type: `names(notes)`
+
+## Sound manipulation
+
 Slice 'em up!
 ```
 chop(piano$C3, bpm=100, count=1/8)
@@ -32,18 +73,38 @@ reverse(piano$C3)
 ```
 Chop and screw!
 ```
-chop(pitch(piano$C3, -36, FALSE), bpm=100, count=2)
+chop(pitch(piano$C3, -36), bpm=100, count=2)
 ```
 Loop!
 ```
 loop(chop(piano$C3, bpm=100, count=1/8), 16)
 ```
-Play a chord!
+Generate chords!
 ```
 chord(C3, piano, "maj", bpm=100, count=4)
 ```
 
-### Sound Sequencing - _Call Me Maybe_
+## Sound sequencing
+`ddr` comes with a simple sound sequencing engine. This is best explained through an example:
+
+```
+# let's make a four-on-the-floor drum loop!
+
+# first, let's put our drum sounds in a list:
+wavs <- list(roland$HHO, roland$SD1, roland$BD1)
+
+# now let's write a series of 1's and 0's indicating when we want each sound to play
+# when we're done, let's also put these in a list:
+hihat <- c(0,1,0,1)
+kick <- c(1,0,1,0)
+snare <- c(0,0,1,0)
+seqs <- list(hihat, kick, snare)
+
+# now lets put these lists into our sequence function and include a bpm and the count each note recieves
+four_on_the_floor <- sequence(wavs, seqs, bpm=120, count=1/8)
+play(loop(four_on_the_floor, 10))
+```
+Now lets take this logic and include chords to generate the chorus of _Call Me Maybe_
 
 ```
 c1 <- chord(A4, sweeplow, "maj", bpm=119, count=1)
@@ -67,8 +128,7 @@ callmemaybe <- sequence(wavs, seqs, bpm=59.5, count=1/16)
 play(loop(callmemaybe, 4))
 
 ```
-
-### Randomly Generated Drums
+But wait, there's more! `ddr` can also generate sequences that include amplitude changes. for instance, compare
 ```
 wavs <- list(roland$HHC, roland$TAM, roland$HHO, roland$BD1, roland$SD1)
 
