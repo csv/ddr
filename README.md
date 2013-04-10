@@ -59,7 +59,7 @@ piano$C3
 # or, alternatively:
 piano[["C3"]]
 ```
-If you want to see the names of the wave file in a given instrument, just type: `names(notes)`
+If you want to see the names of the wave file in a given instrument, just type: `names(instrument)`, eg: `names(piano)` or `names(moog)`
 
 ## Sound manipulation
 
@@ -128,7 +128,16 @@ callmemaybe <- sequence(wavs, seqs, bpm=59.5, count=1/16)
 play(loop(callmemaybe, 4))
 
 ```
-But wait, there's more! `ddr` can also generate sequences that include amplitude changes. for instance, compare
+But wait, there's more! `ddr` can also generate sequences that include amplitude changes. Here, any number between 0 and 1 simply corresponds with the relative amplitude of the wave:
+```
+wavs <- list(roland$HHC)
+seqs <- list(c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8))
+
+hihats <- sequence(wavs, seqs, bpm=59.5, count=1/16)
+play(loop(hihats, 4))
+
+```
+BUT NOW IM REALLY GOING TO BLOW YOUR MIND. Since sequences are (mostly) binomial distributions, you can use built-in R functions to generate random music!
 ```
 wavs <- list(roland$HHC, roland$TAM, roland$HHO, roland$BD1, roland$SD1)
 
@@ -139,13 +148,15 @@ K <- rbinom(32, 1, prob=0.2)
 S <- rbinom(32, 1, prob=0.3)
 seqs <- list(H, T, O, K, S)
 
-drum_loop <- sequence(wavs, seqs, bpm=59.5, count=1/16)
-play(loop(drum_loop, 4))
+random_loop <- sequence(wavs, seqs, bpm=59.5, count=1/16)
+play(loop(random_loop, 4))
 ```
 
-### Data Sonification
-Let's use ChickWeight - Iris is so played out...
+## Data Sonification
+Finally, `ddr` has a function for creating silly data sonifications. It's called `arpeggidata`. `arpeggidata` works by scaling a numeric vector onto a musical scale.  YOU HAVE TO HEAR IT TO BELIEVE IT!
+
 ```
+# Let's use ChickWeight - Iris is so played out...
 data('ChickWeight')
 cw <- ChickWeight
 
@@ -158,6 +169,8 @@ play(chicks)
 ```
 
 ### [FMS Symphony](http://fms.csvsoundsystem.com)
+I used `ddr` to make the music in [FMS Symphony](http://fms.csvsoundsystem.com).  Here's the code (fms_data is built-in to `ddr`):
+
 ```
 bpm <- 280
 ct <- 1/4
