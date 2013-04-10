@@ -11,6 +11,7 @@
 ```
 
 ## Installation
+`ddr` has ~ 1 GB of built-in instruments. It will take awhile to install from github.
 ```
 library("devtools")
 install_github("ddr", "csv")
