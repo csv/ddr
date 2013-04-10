@@ -1,14 +1,16 @@
-```  _     _
-  __| | __| |_ __
- / _` |/ _` | '__|
-| (_| | (_| | |
- \__,_|\__,_|_|
-
- data-driven rhythms in R
+```
+#===========================#
+|          _     _          |
+|       __| | __| |_ __     |
+|      / _` |/ _` | '__|    |
+|     | (_| | (_| | |       |
+|      \__,_|\__,_|_|       |
+|                           |
+|  data-driven rhythms in R |
+#===========================#
 ```
 
 ## Installation
-`ddr` has built-in instruments that are BIG. This will take awhile...
 ```
 library("devtools")
 install_github("ddr", "csv")
