@@ -100,7 +100,7 @@ wavs <- list(roland$HHO, roland$SD1, roland$BD1)
 hihat <- c(0,1,0,1)
 kick <- c(1,0,1,0)
 snare <- c(0,0,1,0)
-seqs <- list(hihat, kick, snare)
+seqs <- list(hihat, snare, kick)
 
 # now lets put these lists into our sequence function and include a bpm and the count each note recieves
 four_on_the_floor <- sequence(wavs, seqs, bpm=120, count=1/8)
