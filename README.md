@@ -20,6 +20,7 @@ library("ddr")
 
 ## Getting started
 _NOTE: YOU MUST RUN `ddr_init` everytime you startup `ddr`!_
+<br/>
 The way `ddr` makes noises is by creating temporary wave files and playing them through an audio player of your preference.  You can set your desired audio player as follows:
 ```
 ddr_init(player="path_to_player")
