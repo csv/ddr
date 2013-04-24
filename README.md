@@ -143,7 +143,7 @@ BUT NOW IM REALLY GOING TO BLOW YOUR MIND. Since sequences are (mostly) binomial
 ```
 wavs <- list(roland$HHC, roland$TAM, roland$HHO, roland$BD1, roland$SD1)
 
-H <- rnorm(32, mean=0.5, sd=0.15)
+H <- rnorm(32, mean=0.5, sd=0.1)
 T <- rbinom(32, 1, prob=0.05)
 O <- rbinom(32, 1, prob=0.075)
 K <- rbinom(32, 1, prob=0.2)
@@ -162,7 +162,7 @@ Finally, `ddr` has a function for creating silly data sonifications. It's called
 data('ChickWeight')
 cw <- ChickWeight
 
-chicks <- arpeggidata(sqrt(sw$weight),
+chicks <- arpeggidata(sqrt(cw$weight),
                       blip,
                       scale="Emajor",
                       bpm=200,
