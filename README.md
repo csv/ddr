@@ -11,10 +11,20 @@
 
 ## Installation
 `ddr` has ~ 1 GB of built-in instruments. It will take awhile to install from github.
+
 ```
 library("devtools")
 install_github("ddr", "csv")
 library("ddr")
+```
+
+Computers without shit tons of RAM may crash if you try installing that way.
+If that happens, try this, which uses less RAM.
+
+```
+git clone git://github.com/csv/ddr.git
+cd ddr
+Rscript -e 'library(devtools);install()'
 ```
 
 ## Getting started
