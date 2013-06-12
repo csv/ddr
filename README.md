@@ -27,6 +27,13 @@ cd ddr
 Rscript -e 'library(devtools);install()'
 ```
 
+You'll probably also want `seewave`, which indirectly depends on `BWidget`.
+
+```
+sudo pacman -S bwidge # In Arch Linux
+Rscript -e 'install.packages("seewave")'
+```
+
 ## Getting started
 _NOTE: YOU MUST RUN `ddr_init` EVERYTIME YOU START UP `ddr`!_
 <br/>
