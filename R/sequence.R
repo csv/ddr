@@ -5,7 +5,6 @@
 #' @param bpm the bpm of the sequence
 #' @param count the count each note recieves
 #' @param unit the resolution of the wave file
-#' @param stereo whether or not any of the waves are in stereo
 
 #' @return
 #' a wave object
@@ -15,15 +14,12 @@
 #' @examples
 #' #not run
 
-sequence <- function(waves, sequences, bpm=120, count="sixteen_", unit="16", stereo=TRUE) {
+sequence <- function(waves, sequences, bpm=120, count="sixteen_", unit="16") {
 
     # meta variables
     step_time <- bpm_time(bpm=bpm, count=count)
     silence_wave <- silence(step_time, xunit="time")
-    if(stereo) {
-        require("seewave")
-        silence_wave <- stereo(silence_wave, silence_wave)
-    }
+    silence_wave <- stereo(silence_wave, silence_wave)
 
     n_layers <- length(waves)
     if(n_layers!=length(sequences)) {
@@ -40,7 +36,7 @@ sequence <- function(waves, sequences, bpm=120, count="sixteen_", unit="16", ste
         if(step <= 1 & step > 0){
             wave <- normalize(wave, level=(step^3)*32767)
             return(wave)
-        } else if (step==0){
+        } else if (step==0) {
             return(silence_wave)
         } else {
             stop("sequence steps must be between 0 and 1")

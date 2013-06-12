@@ -11,7 +11,8 @@ Description: data-driven rhythms in R
 Depends:
     R (>= 2.15.2),
     tuneR,
-    plyr
+    plyr,
+    seewave
 Collate:
     'bpm_time.R'
     'chop.R'
